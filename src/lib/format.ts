@@ -25,3 +25,14 @@ export function joinName(o: Record<string, unknown> | null | undefined): string 
   const parts = [o.firstName, o.middleName, o.lastName].filter(Boolean);
   return parts.length ? parts.join(" ") : "—";
 }
+
+export function fmtDateTime(v: unknown): string {
+  if (!v) return "—";
+  try {
+    const d = new Date(v as string);
+    if (isNaN(d.getTime())) return String(v);
+    return d.toLocaleString(undefined, { year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+  } catch {
+    return String(v);
+  }
+}
