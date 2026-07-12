@@ -16,6 +16,7 @@ import { Route as AppUsersRouteImport } from './routes/_app.users'
 import { Route as AppTasksRouteImport } from './routes/_app.tasks'
 import { Route as AppReportsRouteImport } from './routes/_app.reports'
 import { Route as AppOrganizationsRouteImport } from './routes/_app.organizations'
+import { Route as AppNotificationsRouteImport } from './routes/_app.notifications'
 import { Route as AppDocumentsRouteImport } from './routes/_app.documents'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppContactsRouteImport } from './routes/_app.contacts'
@@ -56,6 +57,11 @@ const AppOrganizationsRoute = AppOrganizationsRouteImport.update({
   path: '/organizations',
   getParentRoute: () => AppRoute,
 } as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDocumentsRoute = AppDocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
   '/documents': typeof AppDocumentsRoute
+  '/notifications': typeof AppNotificationsRoute
   '/organizations': typeof AppOrganizationsRoute
   '/reports': typeof AppReportsRoute
   '/tasks': typeof AppTasksRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
   '/documents': typeof AppDocumentsRoute
+  '/notifications': typeof AppNotificationsRoute
   '/organizations': typeof AppOrganizationsRoute
   '/reports': typeof AppReportsRoute
   '/tasks': typeof AppTasksRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/_app/contacts': typeof AppContactsRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/documents': typeof AppDocumentsRoute
+  '/_app/notifications': typeof AppNotificationsRoute
   '/_app/organizations': typeof AppOrganizationsRoute
   '/_app/reports': typeof AppReportsRoute
   '/_app/tasks': typeof AppTasksRoute
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/dashboard'
     | '/documents'
+    | '/notifications'
     | '/organizations'
     | '/reports'
     | '/tasks'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/dashboard'
     | '/documents'
+    | '/notifications'
     | '/organizations'
     | '/reports'
     | '/tasks'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/_app/contacts'
     | '/_app/dashboard'
     | '/_app/documents'
+    | '/_app/notifications'
     | '/_app/organizations'
     | '/_app/reports'
     | '/_app/tasks'
@@ -223,6 +235,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOrganizationsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/notifications': {
+      id: '/_app/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/documents': {
       id: '/_app/documents'
       path: '/documents'
@@ -267,6 +286,7 @@ interface AppRouteChildren {
   AppContactsRoute: typeof AppContactsRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppDocumentsRoute: typeof AppDocumentsRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
   AppOrganizationsRoute: typeof AppOrganizationsRoute
   AppReportsRoute: typeof AppReportsRoute
   AppTasksRoute: typeof AppTasksRoute
@@ -279,6 +299,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppContactsRoute: AppContactsRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppDocumentsRoute: AppDocumentsRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
   AppOrganizationsRoute: AppOrganizationsRoute,
   AppReportsRoute: AppReportsRoute,
   AppTasksRoute: AppTasksRoute,
