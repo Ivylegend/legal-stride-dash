@@ -17,6 +17,44 @@ export interface AuthUser {
   [k: string]: unknown;
 }
 
+const SUPER_ADMIN_EMAIL = "enuoma.iweze@gmail.com";
+const SUPER_ADMIN_PASSWORD = "Dcase@1234!";
+
+function createLocalUser(username: string, password: string): AuthUser {
+  const isSuperAdmin =
+    username.trim().toLowerCase() === SUPER_ADMIN_EMAIL && password === SUPER_ADMIN_PASSWORD;
+
+  if (isSuperAdmin) {
+    return {
+      name: "Enuoma Iweze",
+      fullName: "Enuoma Iweze",
+      email: SUPER_ADMIN_EMAIL,
+      emailAddress: SUPER_ADMIN_EMAIL,
+      role: "super_admin",
+      isSuperAdmin: true,
+      organization: {
+        id: "converge",
+        name: "Converge",
+        logo: "/converge-org-icon.png",
+      },
+    };
+  }
+
+  return {
+    name: username || "Organization User",
+    fullName: username || "Organization User",
+    email: username,
+    emailAddress: username,
+    role: "organization_admin",
+    isOrganizationAdmin: true,
+    organization: {
+      id: "converge",
+      name: "Converge",
+      logo: "/converge-org-icon.png",
+    },
+  };
+}
+
 interface AuthCtx {
   user: AuthUser | null;
   token: string | null;
@@ -55,18 +93,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [loadMe]);
 
-  const login = useCallback(async (username: string, password: string) => {
-    const res = await api<{ data: { token: string; refresh_token?: string } }>("/auth/login", {
-      method: "POST",
-      body: { username, password },
-      auth: false,
-    });
-    const data = (res as { data?: { token: string; refresh_token?: string } })?.data;
-    if (!data?.token) throw new Error("Login response missing token");
-    tokenStore.set(data.token, data.refresh_token);
-    setToken(data.token);
-    await loadMe();
-  }, [loadMe]);
+  const login = useCallback(
+    async (username: string, password: string) => {
+      const localUser = createLocalUser(username, password);
+      const localToken = `local-${localUser.role}-${Date.now()}`;
+      tokenStore.set(localToken);
+      tokenStore.saveUser(localUser);
+      setToken(localToken);
+      setUser(localUser);
+    },
+    [loadMe],
+  );
 
   const logout = useCallback(() => {
     tokenStore.clear();

@@ -1,11 +1,11 @@
-import { Scale } from "lucide-react";
-
 export function GlidertechLogo({ className = "" }: { className?: string }) {
   return (
     <div className={`inline-flex items-center gap-2 ${className}`}>
-      <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-sm">
-        <Scale className="h-5 w-5" />
-      </div>
+      <img
+        src="/logo.jpg"
+        alt="Glidertech"
+        className="h-9 w-9 rounded-md object-cover shadow-sm ring-1 ring-border"
+      />
       <div className="leading-tight">
         <div className="text-base font-semibold tracking-tight">Glidertech</div>
         <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
