@@ -13,7 +13,7 @@ import { fmtDate } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/_app/documents")({
-  head: () => ({ meta: [{ title: "Documents — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Documents — D-CASE" }] }),
   component: DocumentsPage,
 });
 

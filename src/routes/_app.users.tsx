@@ -23,7 +23,7 @@ import { joinName } from "@/lib/format";
 import { TableRowActions } from "@/components/table-row-actions";
 
 export const Route = createFileRoute("/_app/users")({
-  head: () => ({ meta: [{ title: "Users — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Users — D-CASE" }] }),
   component: UsersPage,
 });
 

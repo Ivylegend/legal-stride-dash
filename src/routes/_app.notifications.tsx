@@ -11,7 +11,7 @@ import { fmtDateTime } from "@/lib/format";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_app/notifications")({
-  head: () => ({ meta: [{ title: "Notifications — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Notifications — D-CASE" }] }),
   component: NotificationsPage,
 });
 

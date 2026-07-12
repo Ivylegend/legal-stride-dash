@@ -31,7 +31,7 @@ import { CreateCaseDrawer } from "@/components/forms/create-case-drawer";
 import { TableRowActions } from "@/components/table-row-actions";
 
 export const Route = createFileRoute("/_app/cases")({
-  head: () => ({ meta: [{ title: "Cases — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Cases — D-CASE" }] }),
   component: CasesPage,
 });
 

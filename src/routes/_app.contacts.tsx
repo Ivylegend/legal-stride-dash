@@ -32,7 +32,7 @@ import { toast } from "sonner";
 import { TableRowActions } from "@/components/table-row-actions";
 
 export const Route = createFileRoute("/_app/contacts")({
-  head: () => ({ meta: [{ title: "Contacts — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Contacts — D-CASE" }] }),
   component: ContactsPage,
 });
 

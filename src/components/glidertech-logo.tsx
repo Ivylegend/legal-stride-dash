@@ -7,7 +7,7 @@ export function GlidertechLogo({ className = "" }: { className?: string }) {
         className="h-9 w-9 rounded-md object-cover shadow-sm ring-1 ring-border"
       />
       <div className="leading-tight">
-        <div className="text-base font-semibold tracking-tight">Glidertech</div>
+        <div className="text-base font-semibold tracking-tight">D-CASE</div>
         <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           Case Management
         </div>

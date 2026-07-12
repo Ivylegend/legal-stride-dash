@@ -8,7 +8,7 @@ import { Download, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_app/reports")({
-  head: () => ({ meta: [{ title: "Reports — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Reports — D-CASE" }] }),
   component: ReportsPage,
 });
 

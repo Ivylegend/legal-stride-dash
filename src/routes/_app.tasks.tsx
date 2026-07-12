@@ -29,7 +29,7 @@ import {
 import { TableRowActions } from "@/components/table-row-actions";
 
 export const Route = createFileRoute("/_app/tasks")({
-  head: () => ({ meta: [{ title: "Tasks — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Tasks — D-CASE" }] }),
   component: TasksPage,
 });
 
