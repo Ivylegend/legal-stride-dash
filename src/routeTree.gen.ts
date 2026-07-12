@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppCasesRouteImport } from './routes/_app.cases'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -33,15 +34,22 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCasesRoute = AppCasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/cases': typeof AppCasesRoute
   '/dashboard': typeof AppDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/cases': typeof AppCasesRoute
   '/dashboard': typeof AppDashboardRoute
 }
 export interface FileRoutesById {
@@ -49,14 +57,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/_app/cases': typeof AppCasesRoute
   '/_app/dashboard': typeof AppDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/dashboard'
+  fullPaths: '/' | '/login' | '/cases' | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/dashboard'
-  id: '__root__' | '/' | '/_app' | '/login' | '/_app/dashboard'
+  to: '/' | '/login' | '/cases' | '/dashboard'
+  id: '__root__' | '/' | '/_app' | '/login' | '/_app/cases' | '/_app/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,14 +104,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/cases': {
+      id: '/_app/cases'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof AppCasesRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppCasesRoute: typeof AppCasesRoute
   AppDashboardRoute: typeof AppDashboardRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppCasesRoute: AppCasesRoute,
   AppDashboardRoute: AppDashboardRoute,
 }
 
