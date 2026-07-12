@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppUsersRouteImport } from './routes/_app.users'
 import { Route as AppTasksRouteImport } from './routes/_app.tasks'
 import { Route as AppReportsRouteImport } from './routes/_app.reports'
+import { Route as AppOrganizationsRouteImport } from './routes/_app.organizations'
 import { Route as AppDocumentsRouteImport } from './routes/_app.documents'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppContactsRouteImport } from './routes/_app.contacts'
@@ -48,6 +49,11 @@ const AppTasksRoute = AppTasksRouteImport.update({
 const AppReportsRoute = AppReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOrganizationsRoute = AppOrganizationsRouteImport.update({
+  id: '/organizations',
+  path: '/organizations',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDocumentsRoute = AppDocumentsRouteImport.update({
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
   '/documents': typeof AppDocumentsRoute
+  '/organizations': typeof AppOrganizationsRoute
   '/reports': typeof AppReportsRoute
   '/tasks': typeof AppTasksRoute
   '/users': typeof AppUsersRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
   '/documents': typeof AppDocumentsRoute
+  '/organizations': typeof AppOrganizationsRoute
   '/reports': typeof AppReportsRoute
   '/tasks': typeof AppTasksRoute
   '/users': typeof AppUsersRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/_app/contacts': typeof AppContactsRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/documents': typeof AppDocumentsRoute
+  '/_app/organizations': typeof AppOrganizationsRoute
   '/_app/reports': typeof AppReportsRoute
   '/_app/tasks': typeof AppTasksRoute
   '/_app/users': typeof AppUsersRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/dashboard'
     | '/documents'
+    | '/organizations'
     | '/reports'
     | '/tasks'
     | '/users'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/dashboard'
     | '/documents'
+    | '/organizations'
     | '/reports'
     | '/tasks'
     | '/users'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/_app/contacts'
     | '/_app/dashboard'
     | '/_app/documents'
+    | '/_app/organizations'
     | '/_app/reports'
     | '/_app/tasks'
     | '/_app/users'
@@ -204,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppReportsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/organizations': {
+      id: '/_app/organizations'
+      path: '/organizations'
+      fullPath: '/organizations'
+      preLoaderRoute: typeof AppOrganizationsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/documents': {
       id: '/_app/documents'
       path: '/documents'
@@ -248,6 +267,7 @@ interface AppRouteChildren {
   AppContactsRoute: typeof AppContactsRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppDocumentsRoute: typeof AppDocumentsRoute
+  AppOrganizationsRoute: typeof AppOrganizationsRoute
   AppReportsRoute: typeof AppReportsRoute
   AppTasksRoute: typeof AppTasksRoute
   AppUsersRoute: typeof AppUsersRoute
@@ -259,6 +279,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppContactsRoute: AppContactsRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppDocumentsRoute: AppDocumentsRoute,
+  AppOrganizationsRoute: AppOrganizationsRoute,
   AppReportsRoute: AppReportsRoute,
   AppTasksRoute: AppTasksRoute,
   AppUsersRoute: AppUsersRoute,
