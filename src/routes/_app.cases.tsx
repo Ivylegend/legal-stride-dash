@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Plus, Briefcase, Search, Star, Eye, Receipt, Calendar, Pencil, Archive, StickyNote } from "lucide-react";
+import { Plus, Briefcase, Search, Star } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
 import {
   Table,
