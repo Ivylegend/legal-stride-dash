@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Plus, Briefcase, Search, Star } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
+import { CaseRowActions } from "@/components/case-row-actions";
 import {
   Table,
   TableBody,
