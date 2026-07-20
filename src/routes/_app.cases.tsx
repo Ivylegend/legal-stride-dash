@@ -199,26 +199,14 @@ function CasesPage() {
                       <StatusBadge status={r.status} />
                     </TableCell>
                     <TableCell>
-                      <div className="flex flex-wrap items-center justify-end gap-1">
-                        <Button size="sm" variant="outline" className="h-7 gap-1 px-2 text-xs" onClick={() => toast("View case")}>
-                          <Eye className="h-3 w-3" /> View
-                        </Button>
-                        <Button size="sm" className="h-7 gap-1 bg-sky-500 px-2 text-xs text-white hover:bg-sky-600" onClick={() => toast("Manage fees")}>
-                          <Receipt className="h-3 w-3" /> Fees
-                        </Button>
-                        <Button size="sm" className="h-7 gap-1 bg-emerald-500 px-2 text-xs text-white hover:bg-emerald-600" onClick={() => toast("Manage hearing dates")}>
-                          <Calendar className="h-3 w-3" /> Hearing
-                        </Button>
-                        <Button size="sm" className="h-7 gap-1 bg-amber-500 px-2 text-xs text-white hover:bg-amber-600" onClick={() => toast("Edit case")}>
-                          <Pencil className="h-3 w-3" /> Edit
-                        </Button>
-                        <Button size="sm" className="h-7 gap-1 bg-rose-500 px-2 text-xs text-white hover:bg-rose-600" onClick={() => toast("Case archived")}>
-                          <Archive className="h-3 w-3" /> Archive
-                        </Button>
-                        <Button size="sm" className="h-7 gap-1 bg-violet-500 px-2 text-xs text-white hover:bg-violet-600" onClick={() => toast("Add note")}>
-                          <StickyNote className="h-3 w-3" /> Notes
-                        </Button>
-                      </div>
+                      <CaseRowActions
+                        onView={() => toast("View case")}
+                        onFees={() => toast("Manage fees")}
+                        onHearing={() => toast("Manage hearing dates")}
+                        onEdit={() => toast("Edit case")}
+                        onArchive={() => toast("Case archived")}
+                        onNotes={() => toast("Add note")}
+                      />
                     </TableCell>
                   </TableRow>
                   );
