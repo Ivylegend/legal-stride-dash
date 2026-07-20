@@ -8,7 +8,7 @@ import { LoadingState, EmptyState } from "@/components/data-state";
 import type { LucideIcon } from "lucide-react";
 
 export const Route = createFileRoute("/_app/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Dashboard — D-CASE" }] }),
   component: DashboardPage,
 });
 

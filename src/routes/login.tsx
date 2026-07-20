@@ -9,7 +9,7 @@ import { ApiError } from "@/lib/api";
 import { Loader2, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
-  head: () => ({ meta: [{ title: "Sign in — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Sign in — D-CASE" }] }),
   component: LoginPage,
 });
 
@@ -33,7 +33,12 @@ function LoginPage() {
       await login(username, password);
       navigate({ to: "/dashboard", replace: true });
     } catch (err) {
-      const msg = err instanceof ApiError ? err.message : err instanceof Error ? err.message : "Sign in failed";
+      const msg =
+        err instanceof ApiError
+          ? err.message
+          : err instanceof Error
+            ? err.message
+            : "Sign in failed";
       setError(msg);
     } finally {
       setLoading(false);
@@ -42,23 +47,30 @@ function LoginPage() {
 
   return (
     <div className="grid min-h-screen w-full bg-background text-foreground lg:grid-cols-2">
-      <div className="hidden flex-col justify-between bg-sidebar p-10 text-sidebar-foreground lg:flex">
-        <GlidertechLogo />
-        <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sidebar-border bg-sidebar-accent px-3 py-1 text-xs uppercase tracking-widest text-sidebar-accent-foreground">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Trusted by legal teams
+      <div
+        className="relative hidden flex-col justify-between p-10 text-white lg:flex bg-cover bg-center"
+        style={{ backgroundImage: "url('/login-bg.png')" }}
+      >
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-slate-900/40 to-slate-950/70" />
+
+        <div className="relative z-10 flex h-full flex-col justify-between">
+          <GlidertechLogo className="text-white" />
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs uppercase tracking-widest text-white/90 backdrop-blur-sm">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              Trusted by legal teams
+            </div>
+            <h1 className="max-w-md text-3xl font-semibold leading-tight tracking-tight text-white">
+              The calm, precise workspace your firm has been waiting for.
+            </h1>
+            <p className="max-w-md text-sm text-white/80">
+              Track matters, clients, tasks, filings and hearings in one professional dashboard
+              built for the pace and rigour of legal practice.
+            </p>
           </div>
-          <h1 className="max-w-md text-3xl font-semibold leading-tight tracking-tight">
-            The calm, precise workspace your firm has been waiting for.
-          </h1>
-          <p className="max-w-md text-sm text-sidebar-foreground/70">
-            Track matters, clients, tasks, filings and hearings in one professional dashboard —
-            built for the pace and rigour of legal practice.
-          </p>
-        </div>
-        <div className="text-xs text-sidebar-foreground/50">
-          &copy; {new Date().getFullYear()} Glidertech. All rights reserved.
+          <div className="text-xs text-white/40">
+            &copy; {new Date().getFullYear()} Glidertech. All rights reserved.
+          </div>
         </div>
       </div>
 

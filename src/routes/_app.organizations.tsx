@@ -14,7 +14,7 @@ import { OrgMark } from "@/components/glidertech-logo";
 import { fmtDate } from "@/lib/format";
 
 export const Route = createFileRoute("/_app/organizations")({
-  head: () => ({ meta: [{ title: "Organizations — Glidertech" }] }),
+  head: () => ({ meta: [{ title: "Organizations — D-CASE" }] }),
   component: OrganizationsPage,
 });
 

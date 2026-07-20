@@ -80,11 +80,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Glidertech — Case Management for Law Firms" },
-      { name: "description", content: "Professional case management dashboard for law firms — cases, clients, contacts, documents, tasks and reports." },
-      { name: "author", content: "Glidertech" },
-      { property: "og:title", content: "Glidertech — Case Management" },
-      { property: "og:description", content: "Professional case management dashboard for law firms." },
+      { title: "D-CASE — Case Management for Law Firms" },
+      {
+        name: "description",
+        content:
+          "Professional case management dashboard for law firms — cases, clients, contacts, documents, tasks and reports.",
+      },
+      { name: "author", content: "D-CASE" },
+      { property: "og:title", content: "D-CASE — Case Management" },
+      {
+        property: "og:description",
+        content: "Professional case management dashboard for law firms.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -93,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/logo.jpg", type: "image/jpeg" },
     ],
   }),
   shellComponent: RootShell,

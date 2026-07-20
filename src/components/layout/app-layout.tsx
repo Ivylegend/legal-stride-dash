@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { OrgMark, GlidertechLogo } from "@/components/glidertech-logo";
 import { useAuth } from "@/lib/auth";
+import { canAccessPath } from "@/lib/access";
 import { useTheme, THEME_OPTIONS } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
@@ -62,10 +63,11 @@ export function AppLayout() {
     const match = NAV.find((n) => pathname.startsWith(n.to));
     return match?.label ?? "Dashboard";
   }, [pathname]);
+  const navItems = useMemo(() => NAV.filter((item) => canAccessPath(item.to, user)), [user]);
 
   const org = user?.organization ?? null;
-  const orgName = (org?.name as string | undefined) ?? "Your Firm";
-  const orgLogo = (org?.logo as string | undefined) ?? null;
+  const orgName = (org?.name as string | undefined) ?? "Converge";
+  const orgLogo = (org?.logo as string | undefined) ?? "/converge-org-icon.png";
 
   const displayName =
     (user?.fullName as string | undefined) ||
@@ -73,7 +75,8 @@ export function AppLayout() {
     [user?.firstName, user?.lastName].filter(Boolean).join(" ") ||
     (user?.email as string | undefined) ||
     "Signed in";
-  const displayEmail = (user?.email as string | undefined) || (user?.emailAddress as string | undefined) || "";
+  const displayEmail =
+    (user?.email as string | undefined) || (user?.emailAddress as string | undefined) || "";
 
   return (
     <div className="flex min-h-screen w-full bg-background text-foreground">
@@ -105,7 +108,7 @@ export function AppLayout() {
         </div>
 
         <nav className="flex-1 space-y-0.5 overflow-y-auto px-2 py-3">
-          {NAV.map((item) => {
+          {navItems.map((item) => {
             const active = pathname === item.to || pathname.startsWith(item.to + "/");
             const Icon = item.icon;
             return (
@@ -132,7 +135,13 @@ export function AppLayout() {
             onClick={() => setCollapsed((c) => !c)}
             className="hidden w-full items-center justify-center gap-2 rounded-md px-2 py-1.5 text-xs text-sidebar-foreground/70 hover:bg-sidebar-accent lg:flex"
           >
-            {collapsed ? <ChevronsRight className="h-4 w-4" /> : <><ChevronsLeft className="h-4 w-4" /> Collapse</>}
+            {collapsed ? (
+              <ChevronsRight className="h-4 w-4" />
+            ) : (
+              <>
+                <ChevronsLeft className="h-4 w-4" /> Collapse
+              </>
+            )}
           </button>
         </div>
       </aside>
@@ -199,7 +208,9 @@ export function AppLayout() {
                     style={{ background: t.swatch }}
                   />
                   {t.label}
-                  {theme === t.value && <span className="ml-auto text-xs text-muted-foreground">✓</span>}
+                  {theme === t.value && (
+                    <span className="ml-auto text-xs text-muted-foreground">✓</span>
+                  )}
                 </DropdownMenuItem>
               ))}
               <DropdownMenuSeparator />

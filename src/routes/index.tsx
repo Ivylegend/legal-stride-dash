@@ -10,8 +10,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   const navigate = useNavigate();
   useEffect(() => {
-    const t = tokenStore.get();
-    navigate({ to: t ? "/dashboard" : "/login", replace: true });
+    navigate({ to: tokenStore.get() ? "/dashboard" : "/login", replace: true });
   }, [navigate]);
   return (
     <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
